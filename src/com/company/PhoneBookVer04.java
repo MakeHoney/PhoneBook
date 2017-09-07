@@ -46,10 +46,7 @@ public class PhoneBookVer04 {
     {
         num = Menu.keyboard.nextInt();
         if(num > 4 || num < 1)
-        {
-            MenuSelectionException excp = new MenuSelectionException();
-            throw excp;
-        }
+            throw new MenuSelectionException();
         else
             return num;
     }

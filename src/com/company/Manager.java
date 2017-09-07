@@ -73,10 +73,7 @@ public class Manager {
     public int toThree(int num) throws MenuSelectionException{
         num = Menu.keyboard.nextInt();
         if(num > 3 || num < 1)
-        {
-            MenuSelectionException excp = new MenuSelectionException();
-            throw excp;
-        }
+            throw new MenuSelectionException();
         else
             return num;
     }
