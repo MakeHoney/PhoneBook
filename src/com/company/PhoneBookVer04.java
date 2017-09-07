@@ -1,17 +1,26 @@
 package com.company;
 
+
+import javax.swing.*;
+
 public class PhoneBookVer04 {
 
 
 
     public static void main(String[] args) {
-        int choice;
-        manager manager = new manager();
+        int choice = 0;
+        Manager manager = new Manager();
 
         while(true)
         {
             Menu.showMenu();
-            choice = Menu.keyboard.nextInt();
+            try {
+                choice = toFour(choice);
+            }
+            catch(MenuSelectionException e)
+            {
+                System.out.println(e.getMessage());
+            }
             Menu.keyboard.nextLine();
             switch(choice)
             {
@@ -32,5 +41,16 @@ public class PhoneBookVer04 {
                     return;
             }
         }
+    }
+    public static int toFour(int num) throws MenuSelectionException
+    {
+        num = Menu.keyboard.nextInt();
+        if(num > 4 || num < 1)
+        {
+            MenuSelectionException excp = new MenuSelectionException();
+            throw excp;
+        }
+        else
+            return num;
     }
 }

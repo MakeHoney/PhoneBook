@@ -3,7 +3,7 @@ package com.company;
 /**
  * Created by Byunghun on 2017-07-10.
  */
-public class manager {
+public class Manager {
 
     final int MAX_NODE = 100;
     PhoneInfo[] ph = new PhoneInfo[MAX_NODE];
@@ -11,21 +11,29 @@ public class manager {
 
     public void addData()
     {
-        int choice;
+        int choice = 0;
 
         System.out.println("데이터 입력을 시작합니다.");
 
         while(true)
         {
             System.out.println("1. 일반, 2. 대학, 3. 회사");
-            choice = Menu.keyboard.nextInt();
+            try {
+                choice = toThree(choice);
+            }
+            catch(MenuSelectionException e)
+            {
+                System.out.println(e.getMessage());
+                continue;
+            }
             Menu.keyboard.nextLine();
-            if(!(choice == 1 || choice == 2 || choice == 3)) {
+            break;
+            /*if(!(choice == 1 || choice == 2 || choice == 3)) {
                 System.out.println("1, 2, 3 중에서 선택하십시오.");
                 continue;
             }
             else
-                break;
+                break; */
         }
 
 
@@ -61,6 +69,18 @@ public class manager {
             System.out.println("\n데이터가 저장되었습니다.");
         }
     }
+
+    public int toThree(int num) throws MenuSelectionException{
+        num = Menu.keyboard.nextInt();
+        if(num > 3 || num < 1)
+        {
+            MenuSelectionException excp = new MenuSelectionException();
+            throw excp;
+        }
+        else
+            return num;
+    }
+
     public void searchData()
     {
         boolean flag = false;
